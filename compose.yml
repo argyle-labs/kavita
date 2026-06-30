@@ -1,9 +1,0 @@
-services:
-  kavita:
-    image: ghcr.io/scottdkey/kavita:latest
-    container_name: kavita
-    restart: unless-stopped
-    ports:
-      - "5000:5000"
-    volumes:
-      - /opt/kavita/config:/config
