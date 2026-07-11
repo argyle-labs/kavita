@@ -1,0 +1,23 @@
+# Kavita - Books, Comics, and Manga Server
+# docs: ../../docs/services/kavita.md
+
+services:
+  kavita:
+    container_name: kavita
+    image: ghcr.io/kareadita/kavita:${KAVITA_IMAGE_TAG:-latest}
+    environment:
+      - TZ=${TZ:-America/Denver}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    ports:
+      - "${KAVITA_PORT:-5000}:5000"
+    volumes:
+      - ${KAVITA_CONFIG_PATH:-/opt/appdata/kavita}:/kavita/config
+      - ${MEDIA_PATH:-/mnt/pool/data/media}/books:/data/media/books
+      - ${MEDIA_PATH:-/mnt/pool/data/media}/comics:/data/media/comics
+      - ${MEDIA_PATH:-/mnt/pool/data/media}/manga:/data/media/manga
+    restart: unless-stopped
