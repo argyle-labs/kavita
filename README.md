@@ -20,13 +20,13 @@ This repo is **self-contained** — the steps below run kavita **by hand, withou
 # compose.yml
 services:
   kavita:
-    image: lscr.io/linuxserver/kavita:latest
+    image: ghcr.io/kareadita/kavita:latest
     container_name: kavita
     restart: unless-stopped
     ports:
       - "5000:5000/tcp"   # web UI
     volumes:
-      - ./config:/config
+      - ./config:/kavita/config
       - /path/to/library:/data
 ```
 
@@ -41,16 +41,16 @@ docker compose up -d
 ```sh
 podman run -d --name kavita --restart unless-stopped \
     -p 5000:5000/tcp \
-    -v ./config:/config \
+    -v ./config:/kavita/config \
     -v /path/to/library:/data \
-    lscr.io/linuxserver/kavita:latest
+    ghcr.io/kareadita/kavita:latest
 ```
 
 **LXC** — on a container-capable LXC (e.g. a Proxmox LXC with nesting enabled) run the same image via Docker/Podman as above, or install kavita from upstream directly on the guest: <https://www.kavitareader.com/>.
 
 **VM** — install kavita from upstream (<https://www.kavitareader.com/>) or run the same container image inside the VM; expose port `5000`.
 
-**Unraid** — add via *Community Applications*, or *Docker → Add Container* with image `lscr.io/linuxserver/kavita:latest`, port `5000`, and the volume paths above.
+**Unraid** — add via *Community Applications*, or *Docker → Add Container* with image `ghcr.io/kareadita/kavita:latest`, port `5000`, and the volume paths above.
 
 ### Ports & data
 
