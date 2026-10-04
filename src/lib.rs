@@ -11,7 +11,7 @@ use plugin_toolkit::service::{
     WorkloadSpec,
 };
 
-/// kavita backend. Holds only the provider name; per-instance endpoint/creds
+/// kavita backend. Holds only the provider name; per-instance address/creds
 /// come from the instance id and `Routes` the generic `service.*` tools hand each op.
 #[derive(Debug, Clone)]
 pub struct KavitaBackend {
